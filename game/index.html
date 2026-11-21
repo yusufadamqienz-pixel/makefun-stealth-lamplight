@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lamplight — a stealth game</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #0b0f14; overflow: hidden; }
+  body { display: grid; place-items: center; font: 14px/1.45 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #cfd8e3; }
+  #wrap { position: relative; }
+  canvas { display: block; background: #0b0f14; border: 1px solid #1d2734; border-radius: 6px; }
+  #hud, #msg, #help { position: absolute; pointer-events: none; text-shadow: 0 1px 2px #000a; }
+  #hud { top: 10px; left: 12px; right: 12px; display: flex; justify-content: space-between; gap: 12px; font-size: 13px; }
+  #msg { inset: 0; display: grid; place-items: center; text-align: center; font-size: 22px; letter-spacing: .02em; }
+  #msg small { display: block; margin-top: 10px; font-size: 13px; opacity: .75; letter-spacing: 0; }
+  #help { bottom: 10px; left: 12px; right: 12px; display: flex; justify-content: space-between; font-size: 12px; opacity: .62; }
+  .meter { display: inline-flex; align-items: center; gap: 6px; }
+  .bar { width: 108px; height: 7px; border: 1px solid #2a3646; border-radius: 99px; overflow: hidden; background: #131b25; }
+  .bar > i { display: block; height: 100%; width: 0%; background: #6fe08a; transition: width .12s linear, background .2s linear; }
+  .hide { display: none !important; }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <canvas id="c" width="960" height="600"></canvas>
+
+  <div id="hud">
+    <div class="meter">ALERT <span class="bar"><i id="alarm"></i></span> <span id="alarmTxt">calm</span></div>
+    <div id="objective">Objective: reach the gate unseen</div>
+    <div id="status">Lamplight</div>
+  </div>
+
+  <div id="help">
+    <div>WASD / arrows move &middot; Shift sneak</div>
+    <div>Space dash &middot; R restart</div>
+  </div>
+
+  <div id="msg">
+    <div>
+      <span id="msgTitle">LAMPLIGHT</span>
+      <small id="msgSub">Cross the yard. The lamplighters are looking.<br>Press any key to begin.</small>
+    </div>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
